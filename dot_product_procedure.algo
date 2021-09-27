@@ -1,0 +1,36 @@
+// procedure dot_product
+PROCEDURE dot_product(v1,v2:ARRAY_OF FLOAT, VAR ps:FLOAT) 
+VAR
+i:INTEGER;
+BEGIN
+ FOR i FROM 0 TO v1.length-1 STEP 1  DO
+    ps:=ps+(v1[i]*v2[i]);
+ END_FOR
+END
+// Main ALGORITHM
+ALGORITHM Dot product
+VAR
+n, m, i:INTEGER;
+vectors:ARRAY_OF FLOAT[20][20];
+prod:FLOAT:=0;
+BEGIN
+REPEAT
+    Write ("entrer un nombre des paires supérieur à 1")
+    Read (n);
+UNTIL (n>1 AND n<= 20 AND n % 2 =0)
+REPEAT
+    Write ("entrer un nombre positif")
+    Read (m);
+UNTIL (m>1 AND m<= 20);
+ FOR i FROM 0 TO n STEP 1  DO
+   FOR j FROM 0 TO m STEP 1  DO
+      Read(vectors[i][j]);
+   END_FOR
+ END_FOR
+FOR i FROM 0 TO n STEP 2 DO
+          dot_Product(vectors[i], vectors[i+1],prod);
+      IF (prod = 0) THEN
+          Write(pairs[i],"and", pairs[i+1] "are orthogonal");
+      END_IF
+END_FOR 
+END
